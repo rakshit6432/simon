@@ -1,14 +1,9 @@
 body {
     background: #212121 ;
     font-family: 'Aldrich', sans-serif;
-}
-main {
-    width: 410px;
-    margin: 5em auto;
-}
-.container,
-.board {
-    display: inline-block;
+    color: #0277bd;
+    width: 100%;
+    min-height: 100%;
 }
 
 .container {
@@ -18,6 +13,7 @@ main {
     border: 5px solid #757575;
     padding: 10px;
     border-radius: 50%;
+    margin: 5em auto;
 }
 
 .box {
@@ -26,6 +22,10 @@ main {
     height: 200px;
     display: inline-block;
     border: 2px solid #757575;
+}
+
+.box:hover {
+    cursor: pointer;
 }
 
 
@@ -79,7 +79,8 @@ section {
 
 .board {
     position: relative;
-    width: 100%;
+    width: 65%;
+    margin: 0 auto;
     margin-top: 2em;
     color: white;
 }
@@ -87,7 +88,7 @@ section {
 .score {
     position: relative;
     display: inline-block;
-    width: 45%;
+    width: 48%;
 }
 
 .level,
@@ -98,6 +99,7 @@ section {
 
 .score:first-child {
     font-size: 2em;
+    padding-left: 2%;
 }
 
 h1 {
@@ -105,15 +107,80 @@ h1 {
     left: 20px;
     top: 35px;
     font-size: 2em;
+    color: black;
+}
+
+h2 {
+    margin-top: 1.5em;
+    font-size: 8em;
+    text-align: center;
+    color: white;
+
+}
+
+.header {
+animation: blinker 2s linear infinite;
+}
+
+@keyframes blinker {
+   0% {color: #1565c0;}
+     30% {color: #f44336;}
+     60% {color: #2e7d32;}
+    100% {color: #fff176;}
+
+}
+
+h3,
+h4 {
+    text-align: center;
+    /*margin-top: 2%;*/
+    line-height: 1.5;
+}
+
+h3 {
+    font-size: 2em;
+}
+
+h4 {
+    font-size: 1.3em;
+}
+
+#play {
+    /*position: absolute;*/
+    /*margin: 0 auto;*/
+    /*position: relative;*/
+    /*text-align: center;*/
+    font-size: 4em;
+    margin: 1em auto;
+    width: 3em;
+    /*bottom: 3em;*/
+}
+
+#play:hover {
+    color: #0d47a1;
+    cursor: pointer;
+}
+
+#quit {
+    width: 1em;
+}
+
+#quit:hover {
+    color: red;
+    cursor: pointer;
 }
 
 footer {
-    margin-top: 9em;
+    /*margin-top: 9em;*/
     height: 20px;
     background: grey;
     border: 1px solid black;
-    padding: 5px;
+    padding: 5px 0;
     text-align: center;
+    position: absolute;
+    bottom: 15px;
+    width: 100%;
+    /*overflow: auto;*/
 }
 
 a {
@@ -135,5 +202,10 @@ a:hover {
   font-family: 'brandico', sans-serif;
 }
 
+@media only and screen and (min-width: 500px) {
+    footer {
+        position: absolute;
 
+    }
+}
 
