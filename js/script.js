@@ -12,12 +12,13 @@ var simonB = `<section class="container">
             </section>
             <section class="board">
                 <div class="score">
-                    <div id='quit' class ="quit" onclick = "mainBoard(${play})">quit</div>
+                    <div id='quit' class ="quit" onclick = "Simon.playSound(6); mainBoard(${play});">quit</div>
                 </div>
                 <div class="score">
-                    <div class='level'>Score :</div>
+                    <div class='level'></div>
                     <div class="highscore"> </div>
-                </div>`;
+                </div>
+                </section>`;
                 $('main').append(simonB);
                 Simon.startGame();
 
@@ -26,9 +27,15 @@ var simonB = `<section class="container">
 var endMessage = function(score) {
     $('main').children().hide();
     var endMsg = `<div id='end'>
-    <h2> Game Over</h2>
-    <h2 id="end1" onclick = "show(${score})">RePlay</h2>
+    <h2 class="header"> Game Over</h2>
+    <div class="endMsg">
+    <h4>Count : ${(Simon.round - 1)}</h4>
+    <h4>High Score : ${Simon.score} </h4>
     </div>
+    <h2 id="end1" onclick = "Simon.playSound(6); show(${score});">RePlay</h2>
+
+    </div>
+
     `;
     $('main').append(endMsg);
 
@@ -51,12 +58,13 @@ var mainBoard = function(play) {
     $('main').children().remove();
     simonBoard.play = false;
     }
+    Simon.playSound(7);
     var intro =  `
         <div>
         <h2 class='header'> SIMON</h2>
         <h3> DO WHAT SIMON SAYS</h3>
         <h4>FOLLOW THE LIGHTS AND PATTERNS AS LONG AS YOU CAN.. <br>IF YOU MISS A PATTERN YOU WILL LOSE A CHANCE</h4>
-        <h2 id="play" onclick = "simonBoard()"> Play</h2>
+        <h2 id="play" onclick = "Simon.playSound(6); simonBoard();"> Play</h2>
         </div>`;
     $('main').append(intro);
 }
@@ -77,7 +85,7 @@ var Simon = {
             this.newRound();
         },
         newRound: function() {
-            console.log('somon: ' + this.round);
+            // console.log('somon: ' + this.round);
             ++this.round;
             if(this.round > 1) {
                 this.sequence=[];
@@ -89,7 +97,7 @@ var Simon = {
             else {
                 $('.highscore').html('High Score : ' + this.score);
             }
-            $('.level').html('Score : ' + (this.round - 1) );
+            $('.level').html('Count : ' + (this.round - 1) );
             for(i = 0; i< this.round; i++){
             this.sequence.push(this.randomNumber());
 
@@ -114,9 +122,10 @@ var Simon = {
         },
 
         endGame: function() {
-            this.round = 0;
+            // this.round = 0;
             // $('.level').html('Level: ' + this.round);
             // $('main').children().hide();
+            this.playSound(5);
             endMessage(this.score);
             // this.startGame();
         },
@@ -186,6 +195,15 @@ var Simon = {
                     break;
                 case 4:
                     link = 'audio/simonSound4.mp3';
+                    break;
+                case 5:
+                    link = 'audio/simonEnd.wav';
+                    break;
+                case 6:
+                    link = 'audio/click.wav';
+                    break;
+                case 7:
+                    link = 'audio/simonStart.mp3';
                     break;
             }
     var audio = new Audio(link);

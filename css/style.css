@@ -31,12 +31,9 @@ body {
 
 
 .blue {
-    /*border-radius: 10% 10% 10% 100%;*/
-    /*border-bottom-right-radius: 5%;*/
     border-bottom-left-radius: 100%;
     bottom: 10px;
     left: 10px;
-    /*background: linear-gradient(#42a5f5, #1565c0);*/
     background: radial-gradient(#42a5f5, #1565c0);
 
 }
@@ -154,14 +151,9 @@ h4 {
 #play,
 #end1 {
     color: white;
-    /*position: absolute;*/
-    /*margin: 0 auto;*/
-    /*position: relative;*/
-    /*text-align: center;*/
     font-size: 4em;
-    margin: 1em auto;
+    margin: 0.5em auto;
     width: 3em;
-    /*bottom: 3em;*/
 }
 
 #play:hover,
@@ -208,6 +200,17 @@ a:hover {
 
 .light {
     opacity: 1;
+}
+
+.endMsg {
+    font-size: 1.5em;
+    border: 1px dashed #0277bd;
+    width: 50%;
+    margin: 0 auto;
+    /*margin: 0 auto;*/
+    /*text-align: center;*/
+    /*display: inline-block;*/
+    /*justify-content: center;*/
 }
 
 /* zocial */
