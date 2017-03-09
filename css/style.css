@@ -22,6 +22,7 @@ body {
     height: 200px;
     display: inline-block;
     border: 2px solid #757575;
+    opacity: 0.7;
 }
 
 .box:hover {
@@ -30,33 +31,38 @@ body {
 
 
 .blue {
+    /*border-radius: 10% 10% 10% 100%;*/
+    /*border-bottom-right-radius: 5%;*/
     border-bottom-left-radius: 100%;
     bottom: 10px;
     left: 10px;
-    background: linear-gradient(#42a5f5, #1565c0);
+    /*background: linear-gradient(#42a5f5, #1565c0);*/
+    background: radial-gradient(#42a5f5, #1565c0);
+
 }
 
 .red {
+    /*border-radius: 10% 100% 10% 10%;*/
     border-top-right-radius: 100%;
     top: 10px;
     right: 10px;
-    background: linear-gradient(
-      #b71c1c, #f44336
-    );
+    background: radial-gradient(#f44336, #b71c1c);
 }
 
 .green {
+    /*border-radius: 10% 10% 100% 10%;*/
     border-bottom-right-radius: 100%;
     right: 10px;
     bottom: 10px;
-    background: linear-gradient(#66bb6a, #2e7d32);
+    background: radial-gradient(#66bb6a, #2e7d32);
 }
 
 .yellow {
+    /*border-radius: 100% 10% 10% 10%;*/
     border-top-left-radius: 100%;
     top: 10px;
     left: 10px;
-    background: linear-gradient(#fbc02d, #fff176);
+    background: radial-gradient(#fff176, #fbc02d);
 }
 
 .center {
@@ -92,7 +98,7 @@ section {
 }
 
 .level,
-.lives {
+.highscore {
     text-align: right;
     font-size: 20px;
 }
@@ -157,7 +163,7 @@ h4 {
 }
 
 #play:hover {
-    color: #0d47a1;
+    color: #2e7d32;
     cursor: pointer;
 }
 
@@ -195,6 +201,10 @@ a:last-child {
 
 a:hover {
     color: #01579b;
+}
+
+.light {
+    opacity: 1;
 }
 
 /* zocial */
