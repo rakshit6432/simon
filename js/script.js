@@ -72,6 +72,22 @@ var mainBoard = function(play) {
         <h2 id="play" onclick = "simonBoard();"> Play</h2>
         </div>`;
     $('main').append(intro);
+    $('#easy').on('click', function(){
+    $('#easy').css('background', '#bbdefb');
+    $('#medium').hide();
+    $('#nightmare').hide();
+})
+$('#medium').on('click', function(){
+    $('#medium').css('background', '#bbdefb');
+    $('#easy').hide();
+    $('#nightmare').hide();
+})
+$('#nightmare').on('click', function(){
+    $('#nightmare').css('background', '#bbdefb');
+    $('#medium').hide();
+    $('#easy').hide();
+})
+
 
 }
 
@@ -86,6 +102,7 @@ var Simon = {
         active: true,
         score: 0,
         speed: 1000,
+        multiplier: 1,
 
         startGame: function() {
             this.sequence = [];
@@ -95,10 +112,14 @@ var Simon = {
             console.log('startGame' + mode);
             if(mode == 'easy') {
                 this.speed = 1000;
+                this.multiplier = 1;
+
             } else if (mode == 'medium') {
                 this.speed = 600;
+                this.multiplier = 2;
             } else if( mode == 'nightmare') {
                 this.speed = 200;
+                this.multiplier = 3;
             }
             this.newRound();
         },
@@ -117,7 +138,8 @@ var Simon = {
                 $('.highscore').html('High Score : ' + this.score);
             }
             $('.level').html('Count : ' + (this.round - 1) );
-            for(i = 0; i< this.round; i++){
+            var mul = this.round * this.multiplier;
+            for(i = 0; i< mul; i++){
             this.sequence.push(this.randomNumber());
 
             this.copy = this.sequence.slice(0);
@@ -235,21 +257,6 @@ var mode = 'easy';
 window.onload = function() {
 // Uh oh -- it's saying `$` is undefined! Something's missing from `index.html`...
 mainBoard(false);
-$('#easy').on('click', function(){
-    $('#easy').css('background', '#bbdefb');
-    $('#medium').hide();
-    $('#nightmare').hide();
-})
-$('#medium').on('click', function(){
-    $('#medium').css('background', '#bbdefb');
-    $('#easy').hide();
-    $('#nightmare').hide();
-})
-$('#nightmare').on('click', function(){
-    $('#nightmare').css('background', '#bbdefb');
-    $('#medium').hide();
-    $('#easy').hide();
-})
 
 
 
