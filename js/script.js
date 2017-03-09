@@ -1,7 +1,7 @@
 var simonBoard = function() {
     var play = true;
     $('main').children().remove();
-    var simonB = `<section class="container">
+    var simonB = `<section id="spin" class="container">
                     <div class='box yellow ' data-tile='1' id='yellow'></div>
                     <div class='box red' data-tile='2' id='red'></div>
                     <div class='box blue' data-tile='3' id='blue'></div>
@@ -72,18 +72,23 @@ var mainBoard = function(play) {
         $('#easy').css('background', '#bbdefb');
         $('#medium').hide();
         $('#nightmare').hide();
+        // $('#spin').removeClass('spinSimon');
+        // $('#spin').addClass('container');
     });
 
     $('#medium').on('click', function(){
         $('#medium').css('background', '#bbdefb');
         $('#easy').hide();
         $('#nightmare').hide();
+        // $('#spin').removeClass('spinSimon');
+        // $('#spin').addClass('container');
     });
 
     $('#nightmare').on('click', function(){
         $('#nightmare').css('background', '#bbdefb');
         $('#medium').hide();
         $('#easy').hide();
+
     });
 };
 
@@ -107,15 +112,18 @@ var Simon = {
         this.active = true;
         // console.log('startGame' + mode);
         if(mode == 'easy') {
-            this.speed = 800;
+            this.speed = 1000;
             this.multiplier = 1;
 
         } else if (mode == 'medium') {
-            this.speed = 400;
-            this.multiplier = 2;
+            this.speed = 500;
+            this.multiplier = 1;
         } else if( mode == 'nightmare') {
-            this.speed = 200;
-            this.multiplier = 3;
+            this.speed = 250;
+            this.multiplier = 2;
+            // $('#spin').removeClass('container');
+            $('#spin').addClass('spinSimon');
+            // $('.center').addClass('spinSimon');
         }
         this.newRound();
     },
@@ -124,9 +132,9 @@ var Simon = {
         // console.log('somon: ' + this.round);
         console.log(mode);
         ++this.round;
-        // if(this.round >= 1) {
-        //     this.sequence=[];
-        // }
+        if(this.round >= 1) {
+            this.sequence=[];
+        }
         if(this.score < this.round){
             this.score = this.round - 1;
             $('.highscore').html('High Score : ' + this.score);
@@ -135,11 +143,11 @@ var Simon = {
             $('.highscore').html('High Score : ' + this.score);
         }
         $('.level').html('Count : ' + (this.round - 1) );
-        // var mul = this.round * this.multiplier;
-        // for(i = 0; i< this.round; i++){
+        var mul = this.round * this.multiplier;
+        for(i = 0; i < mul; i++){
         this.sequence.push(this.randomNumber());
         this.copy = this.sequence.slice(0);
-        // }
+        }
         this.animate(this.sequence);
     },
 

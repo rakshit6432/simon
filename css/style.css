@@ -61,7 +61,24 @@ animation: blinker 2s linear infinite;
     padding: 10px;
     border-radius: 50%;
     margin: 5em auto;
-    flex: 1;
+
+    /*flex: 1;*/
+}
+
+.spinSimon {
+    -webkit-animation-name: spin;
+    -webkit-animation-duration: 15000ms;
+    -webkit-animation-iteration-count: infinite;
+    -webkit-animation-timing-function: linear;
+    -moz-animation-name: spin;
+    -moz-animation-duration: 15000ms;
+    -moz-animation-iteration-count: infinite;
+    -moz-animation-timing-function: linear;
+    -ms-animation-name: spin;
+    -ms-animation-duration: 15000ms;
+    -ms-animation-iteration-count: infinite;
+    -ms-animation-timing-function: linear;
+    -o-transition: rotate(3600deg);
 }
 
 .box {
@@ -119,7 +136,23 @@ animation: blinker 2s linear infinite;
     left: 135px;
     border: 3px solid #424242;
     background: radial-gradient(#eceff1, #78909c);
+/*margin: 20px;*/
+    /*width: 100px; */
+    /*height: 100px;    */
+    /*background: #f00;*/
+}
 
+@-moz-keyframes spin {
+    from { -moz-transform: rotate(0deg); }
+    to { -moz-transform: rotate(360deg); }
+}
+@-webkit-keyframes spin {
+    from { -webkit-transform: rotate(0deg); }
+    to { -webkit-transform: rotate(360deg); }
+}
+@keyframes spin {
+    from {transform:rotate(0deg);}
+    to {transform:rotate(360deg);}
 }
 
 .board {
