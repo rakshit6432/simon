@@ -12,7 +12,7 @@ var simonB = `<section class="container">
             </section>
             <section class="board">
                 <div class="score">
-                    <div id='quit' class ="quit" onclick = "Simon.playSound(6); mainBoard(${play});">quit</div>
+                    <div id='quit' class ="quit" onclick = "Simon.playSound(5); mainBoard(${play});">quit</div>
                 </div>
                 <div class="score">
                     <div class='level'></div>
@@ -32,7 +32,7 @@ var endMessage = function(score) {
     <h4>Count : ${(Simon.round - 1)}</h4>
     <h4>High Score : ${Simon.score} </h4>
     </div>
-    <h2 id="end1" onclick = "Simon.playSound(6); show(${score});">RePlay</h2>
+    <h2 id="end1" onclick = "show(${score});">RePlay</h2>
 
     </div>
 
@@ -58,15 +58,25 @@ var mainBoard = function(play) {
     $('main').children().remove();
     simonBoard.play = false;
     }
-    Simon.playSound(7);
+    // Simon.playSound(7);
     var intro =  `
         <div>
         <h2 class='header'> SIMON</h2>
         <h3> DO WHAT SIMON SAYS</h3>
-        <h4>FOLLOW THE LIGHTS AND PATTERNS AS LONG AS YOU CAN.. <br>IF YOU MISS A PATTERN YOU WILL LOSE A CHANCE</h4>
-        <h2 id="play" onclick = "Simon.playSound(6); simonBoard();"> Play</h2>
+        <h4>FOLLOW THE LIGHTS AND PATTERNS AS LONG AS YOU CAN..</h4>
+        <div class='mode'>
+        <h5 id='easy' onclick="modeAssign('easy')">Easy</h5>
+        <h5 id='medium' onclick="modeAssign('medium')">Medium</h5>
+        <h5 id='nightmare' onclick="modeAssign('nightmare')">Nightmare</h5>
+        </div>
+        <h2 id="play" onclick = "simonBoard();"> Play</h2>
         </div>`;
     $('main').append(intro);
+
+}
+
+var modeAssign = function(s) {
+    mode = s;
 }
 
 var Simon = {
@@ -74,20 +84,29 @@ var Simon = {
         copy: [],
         round: 0,
         active: true,
-        mode: 'normal',
         score: 0,
+        speed: 1000,
 
         startGame: function() {
             this.sequence = [];
             this.copy = [];
             this.round = 0;
             this.active = true;
+            console.log('startGame' + mode);
+            if(mode == 'easy') {
+                this.speed = 1000;
+            } else if (mode == 'medium') {
+                this.speed = 600;
+            } else if( mode == 'nightmare') {
+                this.speed = 200;
+            }
             this.newRound();
         },
         newRound: function() {
             // console.log('somon: ' + this.round);
+            console.log(mode);
             ++this.round;
-            if(this.round > 1) {
+            if(this.round >= 1) {
                 this.sequence=[];
             }
             if(this.score < this.round){
@@ -108,8 +127,8 @@ var Simon = {
 
         checkSeq: function(e) {
             var desiredResponse = this.copy.shift();
-            var actualResponse = $(e.target).data('tile');
-            this.active = (desiredResponse === actualResponse);
+            var playerResponse = $(e.target).data('tile');
+            this.active = (desiredResponse === playerResponse);
             if (this.copy.length === 0 && this.active) {
                 this.deactivate();
 
@@ -122,12 +141,8 @@ var Simon = {
         },
 
         endGame: function() {
-            // this.round = 0;
-            // $('.level').html('Level: ' + this.round);
-            // $('main').children().hide();
             this.playSound(5);
             endMessage(this.score);
-            // this.startGame();
         },
 
         changeMode: function(e) {
@@ -143,7 +158,6 @@ var Simon = {
                 .on('mousedown', '[data-tile]', function(){
                     var col = $(this).attr('data-tile');
                     that.lightUp(col);
-                    // $(this).addClass('light');
                     that.playSound($(this).data('tile'));
                 })
         },
@@ -168,16 +182,16 @@ var Simon = {
                     clearInterval(interval);
                     that.activate();
                 }
-            }, 1000);
+            }, (this.speed + 200));
         },
 
         lightUp: function(tile) {
-            if (this.mode !== 'sound-only') {
+            // if (this.mode !== 'sound-only') {
                 var $tile = $('[data-tile=' + tile + ']').addClass('light');
                 window.setTimeout(function() {
                     $tile.removeClass('light');
-                }, 1000);
-            }
+                }, this.speed);
+            // }
 
         },
         playSound: function(num) {
@@ -216,9 +230,44 @@ var Simon = {
         }
     };
 
+var mode = 'easy';
 
 window.onload = function() {
 // Uh oh -- it's saying `$` is undefined! Something's missing from `index.html`...
 mainBoard(false);
+$('#easy').on('click', function(){
+    $('#easy').css('background', '#bbdefb');
+    $('#medium').hide();
+    $('#nightmare').hide();
+})
+$('#medium').on('click', function(){
+    $('#medium').css('background', '#bbdefb');
+    $('#easy').hide();
+    $('#nightmare').hide();
+})
+$('#nightmare').on('click', function(){
+    $('#nightmare').css('background', '#bbdefb');
+    $('#medium').hide();
+    $('#easy').hide();
+})
+
+
+
+// mainBoard();
+
 
 }
+
+// $(document).ready(function() {
+//     // alert('Hello Tom!');
+//     $("input[type='radio']").click(function(){
+//     mode = $('input[name=speed]:checked').val();
+// console.log(mode);
+// //    var s = $("input[name=rate]:checked").val()
+// //    console.log(s);
+// //       speed(s);
+//    });
+// console.log(mode);
+// });
+
+
