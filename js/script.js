@@ -23,6 +23,27 @@ var simonB = `<section class="container">
 
 }
 
+var endMessage = function(score) {
+    $('main').children().hide();
+    var endMsg = `<div id='end'>
+    <h2> Game Over</h2>
+    <h2 id="end1" onclick = "show(${score})">RePlay</h2>
+    </div>
+    `;
+    $('main').append(endMsg);
+
+}
+var show = function(score) {
+Simon.sequence = [];
+    Simon.round = 0;
+    Simon.score = score;
+    Simon.copy = [];
+
+$('#end').remove();
+
+$('main').children().show();
+Simon.newRound();
+}
 
 
 var mainBoard = function(play) {
@@ -56,6 +77,7 @@ var Simon = {
             this.newRound();
         },
         newRound: function() {
+            console.log('somon: ' + this.round);
             ++this.round;
             if(this.round > 1) {
                 this.sequence=[];
@@ -95,7 +117,8 @@ var Simon = {
             this.round = 0;
             // $('.level').html('Level: ' + this.round);
             // $('main').children().hide();
-            this.startGame();
+            endMessage(this.score);
+            // this.startGame();
         },
 
         changeMode: function(e) {
@@ -122,7 +145,6 @@ var Simon = {
                     .off('click', '[data-tile]')
                     .off('mousedown', '[data-tile]')
                     .off('mouseup', '[data-tile]');
-                $('[data-tile]').removeClass('hoverable');
         },
 
         animate: function(sequence) {
