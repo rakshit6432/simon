@@ -9,7 +9,7 @@
 * Publish source code to GitHub with a solid README.md describing the project.
 
 #### How To Run The Game
-Download the repository in your desktop, unzip it and open the "index.html" file in your browser to play the game Or you can play online version of My game [here](http://simonsays-game-lanchana.bitballoon.com/)
+Download the repository in your desktop, unzip it and open the "index.html" file in your browser to play the game Or you can play online version of My game [here](http://simon-says-game-lanchana.bitballoon.com/)
 
 #### How To Play The Game
 * Choose a difficulty level: Easy, Medium or Nightmare and Click on PLAY to begin the game.
