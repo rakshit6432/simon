@@ -1,3 +1,4 @@
+// Game board
 var simonBoard = function() {
     var play = true;
     $('main').children().remove();
@@ -23,6 +24,7 @@ var simonBoard = function() {
     Simon.startGame();
 };
 
+// Game Over page
 var endMessage = function(score) {
     $('main').children().hide();
     var endMsg = `<div id='end'>
@@ -37,6 +39,7 @@ var endMessage = function(score) {
     $('main').append(endMsg);
 };
 
+// To get the value of highscore from gameover page to game page
 var show = function(score) {
     Simon.sequence = [];
     Simon.round = 0;
@@ -47,6 +50,7 @@ var show = function(score) {
     Simon.newRound();
 };
 
+// Welcome page
 var mainBoard = function(play) {
     if(play === true) {
         $('main').children().remove();
@@ -67,7 +71,7 @@ var mainBoard = function(play) {
         </div>`;
 
     $('main').append(intro);
-
+    // To hide buttons other than selected
     $('#easy').on('click', function(){
         $('#easy').css('background', '#bbdefb');
         $('#medium').hide();
@@ -96,6 +100,7 @@ var modeAssign = function(s) {
     mode = s;
 };
 
+// Main game
 var Simon = {
     sequence: [],
     copy: [],
@@ -111,15 +116,16 @@ var Simon = {
         this.round = 0;
         this.active = true;
         // console.log('startGame' + mode);
+        // Based on player selection the difficuly will be set
         if(mode == 'easy') {
             this.speed = 1000;
             this.multiplier = 1;
 
         } else if (mode == 'medium') {
-            this.speed = 500;
+            this.speed = 600;
             this.multiplier = 1;
         } else if( mode == 'nightmare') {
-            this.speed = 250;
+            this.speed = 350;
             this.multiplier = 2;
             // $('#spin').removeClass('container');
             $('#spin').addClass('spinSimon');
@@ -128,6 +134,7 @@ var Simon = {
         this.newRound();
     },
 
+// This function will be called for every new round of sequence
     newRound: function() {
         // console.log('somon: ' + this.round);
         console.log(mode);
@@ -151,6 +158,7 @@ var Simon = {
         this.animate(this.sequence);
     },
 
+// This function checks player sequence is correct or not
     checkSeq: function(e) {
         var desiredResponse = this.copy.shift();
         var playerResponse = $(e.target).data('tile');
@@ -163,16 +171,18 @@ var Simon = {
             this.endGame();
         }
     },
-
+// This function is called when player enters wrong sequence
+// It will call the end page
     endGame: function() {
         this.playSound(5);
         endMessage(this.score);
     },
 
     changeMode: function(e) {
-        this.mode = e.target.value;
+        // this.mode = e.target.value;
     },
 
+// This function enables the player input
     activate: function() {
         var that = this;
         $('.container')
@@ -186,7 +196,7 @@ var Simon = {
                 that.playSound($(this).data('tile'));
             });
     },
-
+// this ddeactivates the player input while aomputer playing the sequence
     deactivate: function() {
         $('.container')
             .off('click', '[data-tile]')
@@ -207,7 +217,8 @@ var Simon = {
             }
         }, (this.speed + 200));
     },
-
+// lightup the simon board by changing opacity from 0.7 to 1 and back to 0.7
+// after this.speed amount of time
     lightUp: function(tile) {
         // if (this.mode !== 'sound-only') {
             var $tile = $('[data-tile=' + tile + ']').addClass('light');

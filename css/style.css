@@ -53,6 +53,7 @@ animation: blinker 2s linear infinite;
 
 }
 
+/*simon board*/
 .container {
     position: relative;
     width: 410px;
@@ -61,10 +62,10 @@ animation: blinker 2s linear infinite;
     padding: 10px;
     border-radius: 50%;
     margin: 5em auto;
-
     /*flex: 1;*/
 }
 
+/*spins simon in nightmare mode*/
 .spinSimon {
     -webkit-animation-name: spin;
     -webkit-animation-duration: 15000ms;
