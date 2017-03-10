@@ -1,3 +1,57 @@
+// Welcome page
+var mainBoard = function(play) {
+    if(play === true) {
+        $('main').children().remove();
+        simonBoard.play = false;
+    }
+    // Simon.playSound(7);
+    var intro =  `
+        <div>
+            <h2 class='header'> SIMON</h2>
+            <h3> DO WHAT SIMON SAYS</h3>
+            <h4>FOLLOW THE LIGHTS AND PATTERNS AS LONG AS YOU CAN..</h4>
+            <div class='mode'>
+                <h5 id='easy' onclick="Simon.playSound(6); modeAssign('easy')">Easy</h5>
+                <h5 id='medium' onclick="Simon.playSound(6); modeAssign('medium')">Medium</h5>
+                <h5 id='nightmare' onclick="Simon.playSound(6); modeAssign('nightmare')">Nightmare</h5>
+            </div>
+            <h2 id="play" onclick = "simonBoard();"> Play</h2>
+        </div>`;
+
+    $('main').append(intro);
+    hideButton();
+};
+
+// To hide buttons other than selected
+var hideButton = function() {
+    $('#easy').on('click', function(){
+        $('#easy').css('background', '#bbdefb');
+        $('#medium').hide();
+        $('#nightmare').hide();
+        // $('#spin').removeClass('spinSimon');
+        // $('#spin').addClass('container');
+    });
+
+    $('#medium').on('click', function(){
+        $('#medium').css('background', '#bbdefb');
+        $('#easy').hide();
+        $('#nightmare').hide();
+        // $('#spin').removeClass('spinSimon');
+        // $('#spin').addClass('container');
+    });
+
+    $('#nightmare').on('click', function(){
+        $('#nightmare').css('background', '#bbdefb');
+        $('#medium').hide();
+        $('#easy').hide();
+
+    });
+}
+
+var modeAssign = function(s) {
+    mode = s;
+};
+
 // Game board
 var simonBoard = function() {
     var play = true;
@@ -50,56 +104,6 @@ var show = function(score) {
     Simon.newRound();
 };
 
-// Welcome page
-var mainBoard = function(play) {
-    if(play === true) {
-        $('main').children().remove();
-        simonBoard.play = false;
-    }
-    // Simon.playSound(7);
-    var intro =  `
-        <div>
-            <h2 class='header'> SIMON</h2>
-            <h3> DO WHAT SIMON SAYS</h3>
-            <h4>FOLLOW THE LIGHTS AND PATTERNS AS LONG AS YOU CAN..</h4>
-            <div class='mode'>
-                <h5 id='easy' onclick="Simon.playSound(6); modeAssign('easy')">Easy</h5>
-                <h5 id='medium' onclick="Simon.playSound(6); modeAssign('medium')">Medium</h5>
-                <h5 id='nightmare' onclick="Simon.playSound(6); modeAssign('nightmare')">Nightmare</h5>
-            </div>
-            <h2 id="play" onclick = "simonBoard();"> Play</h2>
-        </div>`;
-
-    $('main').append(intro);
-    // To hide buttons other than selected
-    $('#easy').on('click', function(){
-        $('#easy').css('background', '#bbdefb');
-        $('#medium').hide();
-        $('#nightmare').hide();
-        // $('#spin').removeClass('spinSimon');
-        // $('#spin').addClass('container');
-    });
-
-    $('#medium').on('click', function(){
-        $('#medium').css('background', '#bbdefb');
-        $('#easy').hide();
-        $('#nightmare').hide();
-        // $('#spin').removeClass('spinSimon');
-        // $('#spin').addClass('container');
-    });
-
-    $('#nightmare').on('click', function(){
-        $('#nightmare').css('background', '#bbdefb');
-        $('#medium').hide();
-        $('#easy').hide();
-
-    });
-};
-
-var modeAssign = function(s) {
-    mode = s;
-};
-
 // Main game
 var Simon = {
     sequence: [],
@@ -115,23 +119,25 @@ var Simon = {
         this.copy = [];
         this.round = 0;
         this.active = true;
-        // console.log('startGame' + mode);
-        // Based on player selection the difficuly will be set
-        if(mode == 'easy') {
-            this.speed = 1000;
-            this.multiplier = 1;
-
-        } else if (mode == 'medium') {
-            this.speed = 600;
-            this.multiplier = 1;
-        } else if( mode == 'nightmare') {
-            this.speed = 350;
-            this.multiplier = 2;
-            // $('#spin').removeClass('container');
-            $('#spin').addClass('spinSimon');
-            // $('.center').addClass('spinSimon');
-        }
+        this.modeAssign();
         this.newRound();
+    },
+    // Based on player selection the difficuly will be set
+    modeAssign: function(){
+        if(mode == 'easy') {
+                this.speed = 1000;
+                this.multiplier = 1;
+
+            } else if (mode == 'medium') {
+                this.speed = 600;
+                this.multiplier = 1;
+            } else if( mode == 'nightmare') {
+                this.speed = 350;
+                this.multiplier = 2;
+                // $('#spin').removeClass('container');
+                $('#spin').addClass('spinSimon');
+                // $('.center').addClass('spinSimon');
+        }
     },
 
 // This function will be called for every new round of sequence
@@ -139,9 +145,11 @@ var Simon = {
         // console.log('somon: ' + this.round);
         console.log(mode);
         ++this.round;
+
         if(this.round >= 1) {
             this.sequence=[];
         }
+
         if(this.score < this.round){
             this.score = this.round - 1;
             $('.highscore').html('High Score : ' + this.score);
@@ -149,11 +157,13 @@ var Simon = {
         else {
             $('.highscore').html('High Score : ' + this.score);
         }
+
         $('.level').html('Count : ' + (this.round - 1) );
         var mul = this.round * this.multiplier;
+
         for(i = 0; i < mul; i++){
-        this.sequence.push(this.randomNumber());
-        this.copy = this.sequence.slice(0);
+            this.sequence.push(this.randomNumber());
+            this.copy = this.sequence.slice(0);
         }
         this.animate(this.sequence);
     },
@@ -176,10 +186,6 @@ var Simon = {
     endGame: function() {
         this.playSound(5);
         endMessage(this.score);
-    },
-
-    changeMode: function(e) {
-        // this.mode = e.target.value;
     },
 
 // This function enables the player input
@@ -261,7 +267,7 @@ var Simon = {
 
     randomNumber: function() {
             return Math.floor((Math.random()*4)+1);
-        }
+    }
 };
 
 var mode = 'easy';
