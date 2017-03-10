@@ -1,7 +1,7 @@
 #### General Assembly: Full Stack Web-Developer
 ---
 # SIMON SAYS
----
+
 #### Project Requirments
 * Build a simple game as a Web Application.
 * Use HTML and CSS to build and style an intuitive web application.
@@ -41,8 +41,9 @@ Download the repository in your desktop, unzip it and open the "index.html" file
 * Stackoverflow
 * Trello - for project planning and user stories.
 
-#### TODO
+#### Todo
 * Make it responsive.
+
 ---
 
 
