@@ -9,19 +9,19 @@
 * Publish source code to GitHub with a solid README.md describing the project.
 
 #### How To Run The Game
-Download the repository in your desktop, unzip it and open the "index.html" file in your browser to play the game Or you can play online version of My game [here](http://simon-says-game-lanchana.bitballoon.com/)
+Download the repository to your desktop, unzip it and open the "index.html" file in your browser to play the game Or you can play online version of My game [here](http://simon-says-game-lanchana.bitballoon.com/)
 
 #### How To Play The Game
 * Choose a difficulty level: Easy, Medium or Nightmare and Click on PLAY to begin the game.
-* The objective is to DO WHAT SIMON SAYS.. FOLLOW THE LIGHTS AND PATTERNS AS LONG AS YOU CAN..
-* If you replay the right SIMON's pattren, then you will move to next round.
+* The objective is to DO WHAT SIMON SAYS. FOLLOW THE LIGHTS AND PATTERNS AS LONG AS YOU CAN.
+* If you replay the right SIMON's pattern, then you will move to next round.
 * Each time you move to a NEW round, SIMON will play a new and longer pattern.
-* The GAME END'S, When you replay a WRONG pattren.
+* The GAME END'S, When you replay a WRONG pattern.
 * Click on RePlay to play again.
 * Click on QUIT button to quit the game.
 
 #### Features
-* Allow to choose difficulty level: Easy, Medium, and Nightmare.
+* Allows choosing difficulty level: Easy, Medium, and Nightmare.
 * Simon wheel spins in Nightmare difficulty level.
 * Display a Current score and Highscore of the longest sequence successfully played.
 * Quit button.
