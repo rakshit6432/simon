@@ -28,10 +28,13 @@ Download the repository in your desktop, unzip it and open the "index.html" file
 
 #### Wireframe
 * ##### Welcome screen:
+
     ![alt tag](https://raw.githubusercontent.com/lanchana/simon/master/images/welcomeScreen.png)
 * ##### Main screen:
+
     ![alt tag](https://raw.githubusercontent.com/lanchana/simon/master/images/mainScreen.png)
 * ##### End screen:
+
     ![alt tag](https://raw.githubusercontent.com/lanchana/simon/master/images/endScreen.png)
 
 #### Attributions
