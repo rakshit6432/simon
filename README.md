@@ -1,6 +1,6 @@
 #### General Assembly: Full Stack Web-Developer
 ---
-# SIMON SAYS
+# SIMON SAYS GAME
 
 #### Project Requirments
 * Build a simple game as a Web Application.
