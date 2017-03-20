@@ -42,7 +42,7 @@ Download the repository to your desktop, unzip it and open the "index.html" file
 * Game sounds from Freesounds.org
 * Materializecss for color codes
 * Stackoverflow
-* Trello - for project planning and user stories
+* [Trello](https://trello.com/b/6Ctl7Ofv) - for project planning and user stories
 * dillinger.io to make README file
 
 #### Todo
