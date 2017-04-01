@@ -9,7 +9,9 @@ var mainBoard = function(play) {
         <div>
             <h2 class='header'> SIMON</h2>
             <h3> DO WHAT SIMON SAYS</h3>
-            <h4>FOLLOW THE LIGHTS AND PATTERNS AS LONG AS YOU CAN..</h4>
+            <h4>FOLLOW THE LIGHTS AND NEW PATTERNS ON EACH ROUND AS LONG AS YOU CAN..</h4>
+            <form>
+
             <div class='mode'>
                 <h5 id='easy' onclick="Simon.playSound(6); modeAssign('easy')">Easy</h5>
                 <h5 id='medium' onclick="Simon.playSound(6); modeAssign('medium')">Medium</h5>
@@ -17,6 +19,7 @@ var mainBoard = function(play) {
             </div>
             <h2 id="play" onclick = "simonBoard();"> Play</h2>
         </div>`;
+
 
     $('main').append(intro);
     hideButton();
